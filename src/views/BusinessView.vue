@@ -1,7 +1,6 @@
 <template>
-    <HeadlineVue :heading="technologyHeadline"></HeadlineVue>
-    <Card :allnews="technology"></Card>
-
+    <HeadlineVue :heading="businessHeadline"></HeadlineVue>
+    <Card :allnews="business"></Card>
 </template>
 
 <script>
@@ -9,32 +8,33 @@ import { mapActions, mapGetters } from "vuex";
 import HeadlineVue from "@/components/Headline.vue"
 import Card from "@/components/Card.vue"
 export default {
-  name: "TechnologyView",
-  components: {HeadlineVue, Card},
+  name: "BusinessView",
+    components: {HeadlineVue, Card},
  async mounted() {
-  await this.getAllTechnology();
+  await this.getAllBusiness();
     // console.log(this.global);
 },
   computed: {
     ...mapGetters({
-      technology: "getTechnology",
+      business: "getBusiness",
     }),
-    technologyHeadline(){
-        let str = this.$store.state.technology;
+    businessHeadline(){
+        let str = this.$store.state.business;
         console.log(str)
         let result = str.slice(0, 1);
         return result
     },
-    technology(){
-        let str = this.$store.state.technology;
+    business(){
+        let str = this.$store.state.business;
         console.log(str)
         let result = str.slice(1, 10);
         return result
     }
   },
+  
   methods: {
     ...mapActions({
-      getAllTechnology: "getAllTechnology",
+      getAllBusiness: "getAllBusiness",
     }),
   },
 };

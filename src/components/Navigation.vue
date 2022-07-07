@@ -4,8 +4,10 @@
         <img :src="image" alt="">
     </figure>
     <div>
-       <router-link to="/global">Global</router-link>
-       <router-link to="/technology">Technology</router-link>
+       <router-link to="/global">Global</router-link> |
+       <router-link to="/technology">Technology</router-link> |
+       <router-link to="/business">Business</router-link> |
+       <router-link to="/health">Health</router-link>
     </div>
     <div>
         <p>{{ menu }}</p>
@@ -17,7 +19,7 @@
 
 <script>
 import GlobalViewVue from '@/views/GlobalView.vue';
-import TechnologyViewVue from '@/views/TechnologyView.vue';
+
 export default {
     components: { GlobalViewVue },
     data(){
