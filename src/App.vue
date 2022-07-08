@@ -9,8 +9,9 @@
       <router-link to="/business">Business</router-link>
       <router-link to="/health">Health</router-link>
     </div>
-    <div>
+    <div class="menuFlex">
       <p class="menu">Menu</p>
+      <img src="./assets/Vector.svg" alt="">
     </div>
   </nav>
   <router-view/>
@@ -39,6 +40,9 @@ nav a{
   text-decoration: none;
 }
 
+.menuFlex{
+  display: flex;
+}
 .menu{
   font-style: normal;
   font-weight: 400;
@@ -47,6 +51,7 @@ nav a{
   align-items: center;
   color: #000000;
   text-decoration: none;
+  margin-right: 19px;
 }
 
 

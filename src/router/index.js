@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import GlobalView from '../views/GlobalView.vue'
 import TechnologyView from '../views/TechnologyView.vue'
 import BusinessView from '../views/BusinessView.vue'
 import HealthView from '../views/HealthView.vue'
+import SingleView from '../views/SingleView.vue'
 
 const routes = [
   {
@@ -20,11 +20,6 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   },
   {
-    path: '/global',
-    name: 'global',
-    component: GlobalView
-  },
-  {
     path: '/technology',
     name: 'technology',
     component: TechnologyView
@@ -38,7 +33,12 @@ const routes = [
     path: '/health',
     name: 'health',
     component: HealthView
-  }
+  },
+  {
+    path: '/technology/:name',
+    name: 'SingleView',
+    component: SingleView
+  },
 ]
 
 const router = createRouter({

@@ -1,17 +1,31 @@
 <template>
   <header v-for="head in heading" :key="head">
+  <a :href="head.url" target="_blank">
     <div class="heroImage"><img :src="head.urlToImage" /></div>
     <div class="text">
       <h1>{{ head.title }}</h1>
-      <p class="date">{{ head.publishedAt }}</p>
+      <p class="date">{{ longDate(head.publishedAt) }}</p>
       <p class="author">{{ head.author }}</p>
     </div>
+    </a>
   </header>
 </template>
 <script>
 export default {
   name: "HeadlineNav",
   props: ["heading"],
+
+  computed: {
+    longDate() {
+            return (newDate) => {
+                let date = new Date(newDate);
+                const month = date.toLocaleString('default', { month: 'long' });
+                const day = date.toLocaleString('default', { weekday: 'long' });
+                // (date.getMonth()+1)
+                return month + ' ' + date.getDate() + ', ' + date.getFullYear();
+            }
+        }
+  }
 };
 </script>
 <style scoped>

@@ -7,12 +7,14 @@ const store = createStore({
     technology: [],
     business:[],
     health: [],
+    singleView: []
   },
   getters: {
     getGlobal: (state) => state.global,
     getTechnology: (state) => state.technology,
     getBusiness: (state) => state.business,
     getHealth: (state) => state.health,
+    getSingleView: (state) => state.singleView,
   },
   mutations: {
     SET_GLOBAL(state, payload){
@@ -27,13 +29,17 @@ const store = createStore({
     SET_HEALTH(state, payload){
       state.health = payload
     },
+    SET_SINGLE_VIEW(state, payload){
+      state.singleView = payload
+    },
+
   },
   actions: {
     async getAllGlobal({commit}) {
       try {
         const response = await axios.get("https://newsapi.org/v2/everything?q=keyword&apiKey=663173eded324aa0bc3554fb1ffdbbda");
         commit("SET_GLOBAL", response.data.articles);
-        console.log(response)
+        // console.log(response)
         return response;
       } catch (error) {
         console.log(error);
@@ -43,7 +49,7 @@ const store = createStore({
       try {
         const response = await axios.get("https://newsapi.org/v2/top-headlines?category=technology&apiKey=663173eded324aa0bc3554fb1ffdbbda");
         commit("SET_TECHNOLOGY", response.data.articles);
-        console.log(response)
+        // console.log(response)
         return response;
       } catch (error) {
         console.log(error);
@@ -53,7 +59,7 @@ const store = createStore({
       try {
         const response = await axios.get("https://newsapi.org/v2/top-headlines?category=business&apiKey=663173eded324aa0bc3554fb1ffdbbda");
         commit("SET_BUSINESS", response.data.articles);
-        console.log(response)
+        // console.log(response)
         return response;
       } catch (error) {
         console.log(error);
@@ -63,6 +69,16 @@ const store = createStore({
       try {
         const response = await axios.get("https://newsapi.org/v2/top-headlines?category=health&apiKey=663173eded324aa0bc3554fb1ffdbbda");
         commit("SET_HEALTH", response.data.articles);
+        // console.log(response)
+        return response;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async getSingleView({commit}) {
+      try {
+        const response = await axios.get('https://newsapi.org/v2/everything?q=all&from=2022-07-06&apiKey=663173eded324aa0bc3554fb1ffdbbda');
+        commit("SET_SINGLE_VIEW", response.data);
         console.log(response)
         return response;
       } catch (error) {

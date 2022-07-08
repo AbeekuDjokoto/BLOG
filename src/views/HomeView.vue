@@ -1,6 +1,12 @@
 <template>
+
+<input
+      type="text"
+      placeholder="Search for an article..."
+      v-model="searchTerm"
+    />
     <HeadlineVue :heading="globalHeadline"></HeadlineVue>
-    <Card :allnews="global"></Card>
+    <Card :allnews="filtered"></Card>
 </template>
 
 
@@ -11,6 +17,10 @@ import Card from "@/components/Card.vue"
 export default {
   name: "globalView",
   components: {HeadlineVue, Card},
+   data: () => ({
+        searchTerm: ""
+
+    }),
  async mounted() {
   await this.getAllGlobal();
     // console.log(this.global);
@@ -25,12 +35,22 @@ export default {
         let result = str.slice(0, 1);
         return result
     },
+    filtered() {
+       if (this.searchTerm) {
+        return this.$store.state.global.filter((news) =>
+          news.title.toLowerCase().includes(this.searchTerm.toLowerCase())
+        );
+      } else {
+        return this.global;
+      }
+    },
     global(){
         let str = this.$store.state.global;
         console.log(str)
         let result = str.slice(1, 10);
         return result
-    }
+    },
+    
   },
   methods: {
     ...mapActions({
@@ -58,14 +78,25 @@ p{
 }
 
 .description{
-    
     font-style: normal;
     font-weight: 700;
     font-size: 32px;
     line-height: 130%;
     /* or 42px */
     letter-spacing: -0.02em;
-    
-    
+}
+
+input{
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+
+::placeholder{
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 130%;
+  /* or 42px */
+  letter-spacing: -0.02em;
 }
 </style>
